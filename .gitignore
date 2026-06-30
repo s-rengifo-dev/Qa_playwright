@@ -1,0 +1,15 @@
+allure-report/
+allure-results/
+test-results/
+playwright-report/
+blob-report/
+results.xml
+
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.log
+
+.DS_Store
+.env
