@@ -59,3 +59,5 @@ Plaintext
 Error JAVA_HOME: Si allure serve falla, verifica en las Variables de Entorno del Sistema que JAVA_HOME contenga la ruta absoluta del JDK y que Path incluya %JAVA_HOME%\bin.
 
 Trazas y Videos: La configuración tracing=retain-on-failure y la grabación de video están habilitadas en pytest.ini. Los archivos se guardarán automáticamente en caso de fallo dentro de test-results/.
+# Qa_playwright
+A curated learning path for Playwright automation. This repository tracks my development from basic test execution to advanced scenarios, including cross-browser testing, parallel execution, and flaky test handling.
