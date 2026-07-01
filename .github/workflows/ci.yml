@@ -9,6 +9,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    
+    env:
+      QA_USER: ${{ secrets.QA_USER }}
+      QA_PASSWORD: ${{ secrets.QA_PASSWORD }}
+
     steps:
     - uses: actions/checkout@v4
     
