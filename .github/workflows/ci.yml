@@ -9,6 +9,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    env:
+      QA_USER: ${{ secrets.QA_USER }}
+      QA_PASSWORD: ${{ secrets.QA_PASSWORD }}
+
     steps:
     - uses: actions/checkout@v4
     
@@ -25,5 +30,13 @@ jobs:
     - name: Install Playwright Browsers
       run: playwright install --with-deps
       
-    - name: Run tests
-      run: pytest
+    - name: Run tests with Allure
+      run: pytest --alluredir=allure-results
+      
+    - name: Upload Allure Report
+      uses: actions/upload-artifact@v4
+      if: always() 
+      with:
+        name: allure-report-${{ matrix.os }}
+        path: allure-results
+        retention-days: 7
