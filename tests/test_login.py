@@ -18,7 +18,7 @@ def test_unsuccessful_login(login_page: LoginPage) -> None:
 
     login_page.execute_login("SRQa", "SuperQA!")
 
-    expect(login_page.get_alert_locator()).to_contain_text("Your username is invalid!")
+    assert login_page.get_alert_message() == "Your username is invalid!"
 
 @pytest.mark.parametrize("username, password, expected_message", [
     ("usuario_invalido", "SuperSecretPassword!", "Your username is invalid!"),
@@ -34,4 +34,4 @@ def test_login_scenarios(login_page: LoginPage, username, password, expected_mes
 
     login_page.execute_login(username, password)
     
-    expect(login_page.get_alert_locator()).to_contain_text(expected_message)
+    assert login_page.get_alert_message() == expected_message
