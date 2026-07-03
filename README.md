@@ -1,63 +1,65 @@
-Markdown
 # Playwright E2E Automation Framework
 
-Framework de automatización de pruebas E2E diseñado para garantizar estabilidad, observabilidad y trazabilidad en la suite de pruebas de `the-internet.herokuapp.com`.
+[![Playwright Tests](https://github.com/s-rengifo-dev/Qa_playwright/actions/workflows/playwright_tests.yml/badge.svg)](https://github.com/s-rengifo-dev/Qa_playwright/actions/workflows/ci.yml)
 
-## Stack Tecnológico
-- **Lenguaje:** Python 3.14+
-- **Core:** Playwright
-- **Test Runner:** Pytest
-- **Reporting:** Allure Framework (con `allure-pytest`)
-- **Gestor de Entorno:** venv (Python virtual environments)
+Framework de automatización de pruebas E2E diseñado para garantizar estabilidad, observabilidad y trazabilidad en la suite de pruebas. Implementado con un enfoque de integración continua para asegurar la calidad en cada iteración.
 
-## Prerrequisitos
-1. **Python 3.x:** Instalado y accesible en el PATH.
-2. **Java (JDK 17+):** Requerido exclusivamente para ejecutar el servidor de reportes de Allure (`allure serve`).
-   - *Nota:* Asegúrate de tener la variable de entorno `JAVA_HOME` apuntando al directorio raíz de tu instalación JDK.
-3. **Navegadores:** Playwright gestionará la instalación de los binarios (Chromium, Firefox, Webkit).
+---
 
-## Configuración Inicial
-1. **Clonar/Acceder al repositorio.**
-2. **Crear entorno virtual:**
+### 🚀 CI/CD Pipeline (GitHub Actions)
+Este proyecto integra una pipeline automatizada para validación de calidad:
+* **Disparadores:** Ejecución automática en cada `push` o `pull_request` sobre la rama `develop`.
+* **Entorno:** Ejecución en contenedores Ubuntu (Linux).
+* **Observabilidad:** Generación automática de reportes con Allure, almacenados como artefactos descargables por 7 días.
+* **Configuración:** Utiliza *GitHub Secrets* para la gestión segura de credenciales (`QA_USER`, `QA_PASSWORD`).
+
+### 🛠 Tech Stack
+* **Lenguaje:** Python 3.12+
+* **Core:** Playwright
+* **Test Runner:** Pytest
+* **Reporting:** Allure Framework
+* **CI/CD:** GitHub Actions
+
+### ⚙️ Configuración Inicial
+1. **Clonar el repositorio.**
+2. **Entorno virtual:**
    ```powershell
    python -m venv venv
-Activar entorno:
-
-PowerShell
-.\venv\Scripts\activate
+   .\venv\Scripts\activate
 Instalar dependencias:
 
 PowerShell
 pip install -r requirements.txt
- Ejecución
-Toda la configuración de ejecución (navegador, base URL, trazas) está centralizada en pytest.ini.
+🚀 Ejecución Local
+La configuración está centralizada en pytest.ini.
+Nota: Para ejecuciones locales, asegúrate de configurar tus variables de entorno (puedes usar un archivo .env).
 
-Ejecutar todos los tests:
+Ejecutar tests:
 
 PowerShell
 pytest
-
- Reportes (Allure)
-El framework genera automáticamente datos de reporte en la carpeta allure-results.
-
-Generar y visualizar el reporte:
+Generar y visualizar reportes (Allure):
 
 PowerShell
 allure serve allure-results
-
- Estructura del Proyecto
+📂 Estructura
 Plaintext
-├── .pytest_cache/        # Caché de pytest
-├── allure-results/       # Metadata generada tras cada ejecución
+├── .github/workflows/    # CI/CD Pipelines (GitHub Actions)
+├── allure-results/       # Metadata generada tras ejecución
 ├── pages/                # Page Object Model (POM)
 ├── tests/                # Casos de prueba (*_test.py)
-├── venv/                 # Entorno virtual
-├── conftest.py           # Fixtures globales (configuración de contexto)
-├── pytest.ini            # Configuración de ejecución (addopts)
-└── requirements.txt      # Dependencias del proyecto
- Notas Técnicas y Troubleshooting
-Error JAVA_HOME: Si allure serve falla, verifica en las Variables de Entorno del Sistema que JAVA_HOME contenga la ruta absoluta del JDK y que Path incluya %JAVA_HOME%\bin.
+├── conftest.py           # Fixtures globales
+├── pytest.ini            # Configuración de ejecución
+└── requirements.txt      # Dependencias
+🔒 Configuración de Seguridad (CI/CD)
+Para que el pipeline funcione correctamente, debes configurar los secretos en tu repositorio de GitHub:
 
-Trazas y Videos: La configuración tracing=retain-on-failure y la grabación de video están habilitadas en pytest.ini. Los archivos se guardarán automáticamente en caso de fallo dentro de test-results/.
-# Qa_playwright
-A curated learning path for Playwright automation. This repository tracks my development from basic test execution to advanced scenarios, including cross-browser testing, parallel execution, and flaky test handling.
+Ve a Settings > Secrets and variables > Actions.
+
+Crea los siguientes Repository secrets:
+
+QA_USER
+
+QA_PASSWORD
+
+Framework mantenido con buenas prácticas de automatización.
