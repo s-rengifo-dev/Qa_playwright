@@ -29,9 +29,12 @@ class LoginPage(BasePage):
         """
         return self._login_button
 
-    def get_alert_locator(self) -> Locator:
-        """Return the alert locator instance for test assertions."""
-        return self._alert_box
+    def get_alert_message(self) -> str:
+        """Return the alert text for test assertions."""
+        text = self._alert_box.text_content() or ""
+        text = text.replace("×", "")
+        return " ".join(text.split())
+         
         
     def execute_login(self, username_value: str, password_value: str) -> SecurePage:
         """
